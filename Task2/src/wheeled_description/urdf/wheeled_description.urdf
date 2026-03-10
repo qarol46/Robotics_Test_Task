@@ -1,0 +1,345 @@
+<?xml version="1.0" encoding="utf-8"?>
+<robot name="wheeled_description" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  <material name="white">
+    <color rgba="1 1 1 1"/>
+  </material>
+  
+  <material name="dark_gray">
+    <color rgba="0.153 0.153 0.153 1"/>
+  </material>
+  
+  <material name="light_blue">
+    <color rgba="0.792 0.820 0.933 1"/>
+  </material>
+
+  <material name="black">
+    <color rgba="0 0 0 1"/>
+  </material>
+
+  <material name="blue">
+    <color rgba="0.2 0.2 0.8 1"/>
+  </material>
+
+  <link name="root_link">
+    <visual>
+      <geometry>
+        <box size="0.01 0.01 0.01"/>
+      </geometry>
+      <material name="white"/>
+    </visual>
+  </link>
+
+  <link name="base_link">
+    <inertial>
+      <origin xyz="0.0008 0 0.1001" rpy="0 0 0"/>
+      <mass value="4.5"/>
+      <inertia ixx="0.4303" ixy="0" ixz="0.00006" iyy="1.3232" iyz="0" izz="1.4788"/>
+    </inertial>
+    <visual>
+      <geometry>
+        <mesh filename="file://$(find wheeled_description)/meshes/base_link.STL"/>
+      </geometry>
+      <material name="white"/>
+    </visual>
+    <collision>
+      <geometry>
+        <mesh filename="file://$(find wheeled_description)/meshes/base_link.STL"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="root_to_base" type="fixed">
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <parent link="root_link"/>
+    <child link="base_link"/>
+  </joint>
+
+  <link name="fr_wh_link">
+    <inertial>
+      <origin xyz="0 0.06384 0" rpy="0 0 0"/>
+      <mass value="0.8"/>
+      <inertia ixx="0.01111" ixy="0" ixz="0" iyy="0.01738" iyz="0" izz="0.01111"/>
+    </inertial>
+    <visual>
+      <geometry>
+        <mesh filename="file://$(find wheeled_description)/meshes/fr_wh_link.STL"/>
+      </geometry>
+      <material name="dark_gray"/>
+    </visual>
+    <collision>
+      <geometry>
+        <cylinder radius="0.13" length="0.12"/>
+      </geometry>
+      <origin xyz="0 0 0" rpy="1.5708 0 0"/> <!-- Rotate 90° around X -->
+    </collision>
+  </link>
+
+  <joint name="fr_wh_joint" type="continuous">
+    <origin xyz="0.205 -0.32029 -0.02" rpy="0 0 0"/>
+    <parent link="base_link"/>
+    <child link="fr_wh_link"/>
+    <axis xyz="0 1 0"/>
+    <limit effort="1000" velocity="10"/>
+    <dynamics friction="1.0"/>
+  </joint>
+
+  <!-- Front Left Wheel -->
+  <link name="fl_wh_link">
+    <inertial>
+      <origin xyz="0 -0.06384 0" rpy="0 0 0"/>
+      <mass value="0.8"/>
+      <inertia ixx="0.01111" ixy="0" ixz="0" iyy="0.01738" iyz="0" izz="0.01111"/>
+    </inertial>
+    <visual>
+      <geometry>
+        <mesh filename="file://$(find wheeled_description)/meshes/fl_wh_link.STL"/>
+      </geometry>
+      <material name="dark_gray"/>
+    </visual>
+    <collision>
+      <geometry>
+        <cylinder radius="0.13" length="0.12"/>
+      </geometry>
+      <origin xyz="0 0 0" rpy="1.5708 0 0"/> <!-- Rotate 90° around X -->
+    </collision>
+  </link>
+
+  <joint name="fl_wh_joint" type="continuous">
+    <origin xyz="0.205 0.32029 -0.02" rpy="0 0 0"/>
+    <parent link="base_link"/>
+    <child link="fl_wh_link"/>
+    <axis xyz="0 1 0"/>
+    <limit effort="1000" velocity="10"/>
+    <dynamics friction="1.0"/>
+  </joint>
+
+  <!-- Rear Left Wheel -->
+  <link name="rl_wh_link">
+    <inertial>
+      <origin xyz="0 -0.06384 0" rpy="0 0 0"/>
+      <mass value="0.8"/>
+      <inertia ixx="0.01111" ixy="0" ixz="0" iyy="0.01738" iyz="0" izz="0.01111"/>
+    </inertial>
+    <visual>
+      <geometry>
+        <mesh filename="file://$(find wheeled_description)/meshes/rl_wh_link.STL"/>
+      </geometry>
+      <material name="dark_gray"/>
+    </visual>
+    <collision>
+      <geometry>
+        <cylinder radius="0.13" length="0.12"/>
+      </geometry>
+      <origin xyz="0 0 0" rpy="1.5708 0 0"/> <!-- Rotate 90° around X -->
+    </collision>
+  </link>
+
+  <joint name="rl_wh_joint" type="continuous">
+    <origin xyz="-0.205 0.32029 -0.02" rpy="0 0 0"/>
+    <parent link="base_link"/>
+    <child link="rl_wh_link"/>
+    <axis xyz="0 1 0"/>
+    <limit effort="1000" velocity="10"/>
+    <dynamics friction="1.0"/>
+  </joint>
+
+  <!-- Rear Right Wheel -->
+  <link name="rr_wh_link">
+    <inertial>
+      <origin xyz="0 0.06384 0" rpy="0 0 0"/>
+      <mass value="0.8"/>
+      <inertia ixx="0.01111" ixy="0" ixz="0" iyy="0.01738" iyz="0" izz="0.01111"/>
+    </inertial>
+    <visual>
+      <geometry>
+        <mesh filename="file://$(find wheeled_description)/meshes/rr_wh_link.STL"/>
+      </geometry>
+      <material name="dark_gray"/>
+    </visual>
+    <collision>
+      <geometry>
+        <cylinder radius="0.13" length="0.12"/>
+      </geometry>
+      <origin xyz="0 0 0" rpy="1.5708 0 0"/> <!-- Rotate 90° around X -->
+    </collision>
+  </link>
+
+  <joint name="rr_wh_joint" type="continuous">
+    <origin xyz="-0.205 -0.32029 -0.02" rpy="0 0 0"/>
+    <parent link="base_link"/>
+    <child link="rr_wh_link"/>
+    <axis xyz="0 1 0"/>
+    <limit effort="1000" velocity="10"/>
+    <dynamics friction="1.0"/>
+  </joint>
+
+<link name="lidar_link">
+  <inertial>
+    <origin xyz="0 0 0.03589" rpy="0 0 0"/>
+    <mass value="0.25"/>
+    <inertia ixx="0.00063" ixy="0" ixz="0" iyy="0.00063" iyz="0" izz="0.00075"/>
+  </inertial>
+  <visual>
+    <geometry>
+      <mesh filename="file://$(find wheeled_description)/meshes/lidar_link.STL"/>
+    </geometry>
+    <material name="light_blue"/>
+  </visual>
+  <collision>
+    <geometry>
+      <mesh filename="file://$(find wheeled_description)/meshes/lidar_link.STL"/>
+    </geometry>
+  </collision>
+</link>
+     
+  <joint name="lidar_joint" type="fixed">
+    <parent link="base_link"/>
+    <child link="lidar_link"/>
+    <origin xyz="0.12109 0 0.21171" rpy="0 0 0"/>
+  </joint>
+     
+  <!--gazebo reference="lidar_link">
+        <sensor type="ray" name="lidar_3d">
+        <pose>0 0 0 0 0 0</pose>
+        <visualize>false</visualize>
+        <update_rate>10</update_rate>
+        <ray>
+            <scan>
+                <horizontal>
+                    <samples>150</samples>
+                    <resolution>1</resolution>
+                    <min_angle>0.0</min_angle>
+                    <max_angle>6.28319</max_angle>
+                </horizontal>
+                <vertical>
+                    <samples>16</samples>
+                    <resolution>1</resolution>
+                    <min_angle>-0.261799</min_angle>
+                    <max_angle>0.261799</max_angle>
+                </vertical>
+            </scan>
+            <range>
+                <min>0.4</min>
+                <max>35.0</max>
+                <resolution>0.015</resolution>
+            </range>
+            <noise>
+                <type>gaussian</type>
+                <mean>0.0</mean>
+                <stddev>0.01</stddev>
+            </noise>
+        </ray>
+        <plugin name="lidar_3d_controller" filename="libgazebo_ros_ray_sensor.so">
+            <ros>
+                <remapping>~/out:=point_cloud</remapping>
+            </ros>
+            <output_type>sensor_msgs/PointCloud2</output_type>
+            <frame_name>laser_link</frame_name>
+        </plugin>
+        </sensor>
+    </gazebo-->
+
+  <!-- Camera Link -->
+  <!--link name="camera_link">
+    <inertial>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <mass value="0.1"/>
+      <inertia ixx="0.0001" ixy="0" ixz="0" iyy="0.0001" iyz="0" izz="0.0001"/>
+    </inertial>
+    <visual>
+      <geometry>
+        <box size="0.05 0.05 0.05"/>
+      </geometry>
+      <material name="black"/>
+    </visual>
+    <collision>
+      <geometry>
+        <box size="0.05 0.05 0.05"/>
+      </geometry>
+    </collision>
+  </link-->
+
+  <!-- Camera Joint -->
+  <!--joint name="camera_joint" type="fixed">
+    <origin xyz="0.25 0 0.15" rpy="0 0 0"/>
+    <parent link="base_link"/>
+    <child link="camera_link"/>
+  </joint>
+
+  <link name="camera_optical_frame"/>
+
+  <joint name="camera_optical_joint" type="fixed">
+    <origin xyz="0 0 0" rpy="-1.5708 0 -1.5708"/>
+    <parent link="camera_link"/>
+    <child link="camera_optical_frame"/>
+  </joint>
+
+  <gazebo reference="camera_link">
+    <sensor type="camera" name="camera">
+      <update_rate>30.0</update_rate>
+      <camera name="main">
+        <horizontal_fov>1.0472</horizontal_fov>
+        <image>
+          <width>640</width>
+          <height>480</height>
+          <format>R8G8B8</format>
+        </image>
+        <clip>
+          <near>0.05</near>
+          <far>100</far>
+        </clip>
+        <noise>
+          <type>gaussian</type>
+          <mean>0.0</mean>
+          <stddev>0.007</stddev>
+        </noise>
+      </camera>
+      <plugin name="camera_controller" filename="libgazebo_ros_camera.so">
+        <alwaysOn>true</alwaysOn>
+        <updateRate>0.0</updateRate>
+        <cameraName>camera</cameraName>
+        <imageTopicName>image_raw</imageTopicName>
+        <cameraInfoTopicName>camera_info</cameraInfoTopicName>
+        <frameName>camera_optical_frame</frameName>
+        <hackBaseline>0.07</hackBaseline>
+        <distortionK1>0.0</distortionK1>
+        <distortionK2>0.0</distortionK2>
+        <distortionK3>0.0</distortionK3>
+        <distortionT1>0.0</distortionT1>
+        <distortionT2>0.0</distortionT2>
+      </plugin>
+    </sensor>
+  </gazebo-->
+
+  <link name="imu_link">
+    <inertial>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <mass value="0.01"/>
+      <inertia ixx="0.000001" ixy="0" ixz="0" iyy="0.000001" iyz="0" izz="0.000001"/>
+    </inertial>
+  </link>
+
+  <joint name="imu_joint" type="fixed">
+    <origin xyz="0.1 0 0.1" rpy="0 0 0"/>
+    <parent link="base_link"/>
+    <child link="imu_link"/>
+  </joint>
+
+  <gazebo reference="imu_link">
+    <sensor type="imu" name="imu_sensor">
+      <always_on>true</always_on>
+      <update_rate>100</update_rate>
+      <visualize>true</visualize>
+      <topic>__default_topic__</topic>
+      <plugin filename="libgazebo_ros_imu_sensor.so" name="imu_plugin">
+        <topic_name>/imu/data</topic_name>
+        <body_name>imu_link</body_name>
+        <update_rate>100.0</update_rate>
+        <gravity_z>9.81</gravity_z>
+        <initial_orientation_as_reference>false</initial_orientation_as_reference>
+      </plugin>
+      <pose>0 0 0 0 0 0</pose>
+    </sensor>
+  </gazebo>
+</robot>

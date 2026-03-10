@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="wheeled_robot">
+
+  <xacro:include filename="$(find wheeled_description)/urdf/wheeled_description.urdf"/>
+  
+  <xacro:include filename="$(find wheeled_description)/urdf/ros2_control.xacro"/>
+
+  <xacro:include filename="$(find wheeled_description)/urdf/depth_camera.xacro"/>
+  
+  <xacro:wheeled_ros2_control/>
+  
+  <xacro:include filename="$(find velodyne_description)/urdf/VLP-16.urdf.xacro"/>
+  <xacro:VLP-16 parent="lidar_link" 
+                name="velodyne" 
+                topic="/velodyne_points" 
+                hz="10" 
+                lasers="16"
+                samples="250" 
+                collision_range="0.3"
+                min_range="0.8" 
+                max_range="40.0"
+                noise="0.0"    
+                min_angle="-3.1415"  
+                max_angle="3.1415"
+                gpu="false">
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+  </xacro:VLP-16>
+
+</robot>
