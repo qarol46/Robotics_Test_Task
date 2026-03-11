@@ -25,7 +25,7 @@
 
 ## Демонстрация работы модуля
 
-<img src="https://github.com/qarol46/Robotics_Test_Task/blob/master/video/task1.gif" alt="Демонстрация работы модуля" width="60%">
+<img src="https://github.com/qarol46/Robotics_Test_Task/blob/master/video/task1.gif" alt="Демонстрация работы модуля" width="75%">
 
 ## Требования к системе
 
@@ -144,7 +144,7 @@ python opencv_example.py
 
 ## Демонстрация работы лидара в симуляции
 
-![Демонстрация работы лидара в симуляции](video/task2.gif)
+<img src="https://github.com/qarol46/Robotics_Test_Task/blob/master/video/task2.gif" alt="Демонстрация работы модуля" width="75%">
 
 ## Установка и настройка
 
