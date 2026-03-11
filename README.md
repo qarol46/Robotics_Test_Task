@@ -25,7 +25,7 @@
 
 ## Демонстрация работы модуля
 
-![Демонстрация работы модуля](video/task1.gif)
+<img src="https://github.com/qarol46/Robotics_Test_Task/blob/master/video/task1.gif" alt="Демонстрация работы модуля" width="60%">
 
 ## Требования к системе
 
